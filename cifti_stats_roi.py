@@ -12,6 +12,9 @@ import platform
 # Import modules for argument parsing
 import argparse
 
+# Define global variable(s)
+scripts_dir = os.path.dirname(os.path.realpath(__file__))
+
 # Define class(es)
 
 class Command():
@@ -42,6 +45,7 @@ class Command():
         return self.cmd_list
 
 # Define functions
+
 def run(cmd_list,stdout="",stderr=""):
     '''
     Uses python's built-in subprocess class to run a command from an input command list.
@@ -309,6 +313,8 @@ def roi_loc(coords,vol_atlas="Harvard-Oxford Subcortical Structural Atlas"):
     '''
     Uses input list of X,Y,Z MNI space mm coordinates to identify ROIs.
     
+    NOTE: External bash script is used. Atlas option is hard-coded.
+    
     Arguments:
         coords(list): Coordinate list with a lenth of 3 that corresponds to the XYZ coordinates of some ROI in MNI space.
         vol_atlas(str): Atlas to be used in FSL's `atlasquery`. See FSL's `atlasquery` help menu for details.
@@ -321,9 +327,11 @@ def roi_loc(coords,vol_atlas="Harvard-Oxford Subcortical Structural Atlas"):
     out_file = "subcort.rois.txt"
     
     if len(coords) == 3:
-        atlasq = Command().init_cmd("atlasquery")
-        atlasq.append(f"--atlas=\"{vol_atlas}\"")
-        atlasq.append(f"--coord={coords[0]},{coords[1]},{coords[2]}")
+        atlasq_cmd = os.path.join(scripts_dir,"atlasq.sh")
+        atlasq = Command().init_cmd(atlasq_cmd)
+        atlasq.append(f"--coord")
+        atlasq.append(f"\"{coords[0]},{coords[1]},{coords[2]}\"")
+        # atlasq.append(f"--atlas=\"{vol_atlas}\"")
     
         run(atlasq,out_file)
 
