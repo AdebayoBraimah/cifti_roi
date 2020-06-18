@@ -496,40 +496,40 @@ if __name__ == "__main__":
                             required=True,
                             help="Output spreadsheet name.")
     reqoptions.add_argument('-l', '-left', '--left-surface',
-                        type=str,
-                        dest="left_gii",
-                        metavar="GII",
-                        required=True,
-                        help="Input left gifti surface.")
+                            type=str,
+                            dest="left_gii",
+                            metavar="GII",
+                            required=True,
+                            help="Input left gifti surface.")
     reqoptions.add_argument('-r', '-right', '--right-surface',
-                        type=str,
-                        dest="right_gii",
-                        metavar="GII",
-                        required=True,
-                        help="Input right gifti surface.")
+                            type=str,
+                            dest="right_gii",
+                            metavar="GII",
+                            required=True,
+                            help="Input right gifti surface.")
     reqoptions.add_argument('-a', '-atlas', '--atlas',
-                        type=str,
-                        dest="atlas",
-                        metavar="ATLAS.dlabel.nii",
-                        required=True,
-                        help="Cifti atlas file.")
+                            type=str,
+                            dest="atlas",
+                            metavar="ATLAS.dlabel.nii",
+                            required=True,
+                            help="Cifti atlas file.")
 
     # Optional Arguments
     optoptions = parser.add_argument_group('Optional arguments')
     optoptions.add_argument('-t', '-thresh', '--thresh',
-                        type=float,
-                        dest="thresh",
-                        metavar="FLOAT",
-                        default=1.77,
-                        required=False,
-                        help="Cluster threshold.")
+                            type=float,
+                            dest="thresh",
+                            metavar="FLOAT",
+                            default=1.77,
+                            required=False,
+                            help="Cluster threshold.")
     optoptions.add_argument('-d', '-dist', '--distance',
-                        type=float,
-                        dest="dist",
-                        metavar="FLOAT",
-                        default=20,
-                        required=False,
-                        help="Minimum distance between clusters.")
+                            type=float,
+                            dest="dist",
+                            metavar="FLOAT",
+                            default=20,
+                            required=False,
+                            help="Minimum distance between clusters.")
 
     args = parser.parse_args()
 
