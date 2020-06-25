@@ -1,8 +1,6 @@
 #!/usr/bin/env python
 
-'''
-working doc-string
-'''
+'''Identifies clusters in CIFTI files, identifies their overlapping ROIs, and writes them out to a CSV file.'''
 
 # Import modules
 import os
